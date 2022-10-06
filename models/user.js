@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const isEmail = require('validator/lib/isEmail');
 
 const userSchema = new mongoose.Schema({
-    
+
     name: {
         type: String,
         minlength: 2,
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
 
     password: {
         type: String,
-        select: false,          // comment for debug
+        select: false, // comment for debug
         required: true,
     },
 
