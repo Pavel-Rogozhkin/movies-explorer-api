@@ -1,5 +1,6 @@
 const express = require('express');
 const { celebrate, Joi } = require('celebrate');
+const { getUserInfo, updateUser } = require('../controllers/users');
 
 const usersRoutes = express.Router();
 
