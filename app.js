@@ -60,7 +60,6 @@ async function server() {
     await app.listen(PORT, () => {
         console.log(`Server starting on port: ${PORT}`);
     });
-};
+}
 
 server();
-  

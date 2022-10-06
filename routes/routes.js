@@ -1,15 +1,18 @@
 const express = require('express');
+
 const routes = express.Router();
 
+const { celebrate, Joi } = require('celebrate');
 const { usersRoutes } = require('./users');
 const { moviesRoutes } = require('./movies');
-const { auth }= require('../middlewares/auth');
+const { auth } = require('../middlewares/auth');
 const { NotFoundError } = require('../errors/not-found-err');
 const { login, createNewUser } = require('../controllers/users');
 
 routes.use(express.json());
 
-routes.post('/signin',
+routes.post(
+    '/signin',
     celebrate({
         body: Joi.object().keys({
             email: Joi.string().required().email(),
@@ -19,7 +22,8 @@ routes.post('/signin',
     login,
 );
 
-routes.post('/signup',
+routes.post(
+    '/signup',
     celebrate({
         body: Joi.object().keys({
             name: Joi.string().min(2).max(30),
