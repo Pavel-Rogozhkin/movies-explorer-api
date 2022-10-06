@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const console = require('console');
 const cors = require('cors');
+
 const { celebrate, Joi, errors } = require('celebrate');
 const { createNewUser, login } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
