@@ -14,8 +14,8 @@ const { routes } = require('./routes/routes');
 require('dotenv').config();
 
 const {
-    PORT = 4000,
-    MONGO_URI = 'mongodb://localhost:27017/bitfilmsdb',
+    PORT = 3000,
+    MONGO_URI = 'mongodb://localhost:27017/filmsdb',
 } = process.env;
 
 const app = express();
@@ -30,9 +30,9 @@ app.use(
 
 app.use(cors({
     origin: [
-        'http://localhost:3000',
+        // 'http://localhost:3000',
         // 'http://frontendURL',
-        'https://localhost:3000',
+        // 'https://localhost:3000',
         // 'https://frontendURL',
     ],
     credentials: true,
