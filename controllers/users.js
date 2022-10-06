@@ -5,11 +5,12 @@ const { AuthError } = require('../errors/auth-err');
 const { ConfError } = require('../errors/conf-err');
 const { NotFoundError } = require('../errors/not-found-err');
 const { ReqError } = require('../errors/req-err');
+
 require('dotenv').config();
 
 const {
-  NODE_ENV,
-  JWT_SECRET,
+    NODE_ENV,
+    JWT_SECRET,
 } = process.env;
 
 const getUserInfo = async (req, res, next) => {
