@@ -27,7 +27,7 @@ const createMovie = async (req, res, next) => {
 
 const deleteMovieById = async (req, res, next) => {
     try {
-        const { movieId } = req.params;
+        const { movieId } = req.body;
         const movie = await Movie.findById(movieId);
         const movieUser = movie.owner._id.toString();
         const userId = req.user._id;

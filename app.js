@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const console = require('console');
-// const cors = require('cors');
+const cors = require('cors');
 const helmet = require('helmet');
 
 const { errors } = require('celebrate');
@@ -28,15 +28,15 @@ app.use(
     }),
 );
 
-// app.use(cors({
-//     origin: [
-//         // 'http://localhost:3000',
-//         // 'http://frontendURL',
-//         // 'https://localhost:3000',
-//         // 'https://frontendURL',
-//     ],
-//     credentials: true,
-// }));
+app.use(cors({
+    origin: [
+        'http://localhost:3000',
+        'http://pashalex.nomoredomains.icu',
+        'https://localhost:3000',
+        'https://pashalex.nomoredomains.icu',
+    ],
+    credentials: true,
+}));
 
 app.use(bodyParser.json());
 

@@ -29,7 +29,7 @@ moviesRoutes.post(
 moviesRoutes.delete(
     '/movies/_id',
     celebrate({
-        params: Joi.object().keys({
+        body: Joi.object().keys({
             movieId: Joi.string().alphanum().hex(),
         }),
     }),
