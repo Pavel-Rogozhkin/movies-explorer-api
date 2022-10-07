@@ -15,14 +15,11 @@ const getMovies = async (req, res, next) => {
 
 const createMovie = async (req, res, next) => {
     try {
-        const movie = await new Movie({
-            owner: req.user._id,
-            ...req.body,
-        }).save();
-        return res.send(movie);
+        const movie = await Movie.create({ owner: req.user._id, ...req.body });
+        return res.status(201).send(movie);
     } catch (err) {
         if (err.name === 'ValidationError') {
-            return next(new ReqError('Переданы некорректные данные при создании карточки'));
+            return next(new ReqError('Переданы некорректные данные при создании фильма'));
         }
         return next(err);
     }
@@ -35,17 +32,17 @@ const deleteMovieById = async (req, res, next) => {
         const movieUser = movie.owner._id.toString();
         const userId = req.user._id;
         if (!movie) {
-            return next(new NotFoundError('Карточка с указанным ID не найдена'));
+            return next(new NotFoundError('Фильм с указанным ID не найден'));
         }
         if (movieUser === userId) {
             await Movie.findByIdAndDelete(movieId);
         } else {
-            return next(new ForbError('Попытка удалить карточку другого пользователя'));
+            return next(new ForbError('Попытка удалить фильм другого пользователя'));
         }
-        return res.send({ message: 'Карточка была удалена' });
+        return res.send({ message: 'Фильм был удален' });
     } catch (err) {
         if (err.name === 'CastError') {
-            return next(new ReqError('Переданы некорректные данные при удалении карточки'));
+            return next(new ReqError('Переданы некорректные данные при удалении фильма'));
         }
         return next(err);
     }

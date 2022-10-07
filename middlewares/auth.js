@@ -8,7 +8,6 @@ const {
 } = process.env;
 
 const auth = async (req, res, next) => {
-    // console.log(req);
     let payload;
     const token = req.cookies.jwt;
     try {
