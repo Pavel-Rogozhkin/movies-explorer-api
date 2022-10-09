@@ -6,7 +6,8 @@ const { ForbError } = require('../errors/forb-err');
 
 const getMovies = async (req, res, next) => {
     try {
-        const movies = await Movie.find({});
+        const owner = req.user._id;
+        const movies = await Movie.find({ owner });
         return res.send(movies);
     } catch (err) {
         return next(err);
@@ -27,15 +28,15 @@ const createMovie = async (req, res, next) => {
 
 const deleteMovieById = async (req, res, next) => {
     try {
-        const { id } = req.params;
-        const movie = await Movie.findById(id);
+        const { _id } = req.params;
+        const movie = await Movie.findById(_id);
         if (!movie) {
             return next(new NotFoundError('Фильм с указанным ID не найден'));
         }
         const movieUser = movie.owner._id.toString();
         const userId = req.user._id;
         if (movieUser === userId) {
-            await Movie.findByIdAndDelete(id);
+            await Movie.findByIdAndDelete(_id);
         } else {
             return next(new ForbError('Попытка удалить фильм другого пользователя'));
         }
