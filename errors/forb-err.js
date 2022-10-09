@@ -1,7 +1,9 @@
+const { forbErr } = require('../constants/consts');
+
 class ForbError extends Error {
     constructor(message) {
         super(message);
-        this.statusCode = 403;
+        this.statusCode = forbErr;
     }
 }
 

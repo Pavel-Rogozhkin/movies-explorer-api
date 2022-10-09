@@ -1,7 +1,9 @@
+const { authErr } = require('../constants/consts');
+
 class AuthError extends Error {
     constructor(message) {
         super(message);
-        this.statusCode = 401;
+        this.statusCode = authErr;
     }
 }
 
