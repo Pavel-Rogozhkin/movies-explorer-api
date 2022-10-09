@@ -5,18 +5,18 @@ const mongoose = require('mongoose');
 const console = require('console');
 const cors = require('cors');
 const helmet = require('helmet');
-
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorsHandler } = require('./middlewares/errors');
 const { routes } = require('./routes/routes');
 const rateLimiter = require('./middlewares/rateLimiter');
+const { MONGO_URI_DEV } = require('./constants/config');
 
 require('dotenv').config();
 
 const {
     PORT = 3000,
-    MONGO_URI = 'mongodb://localhost:27017/moviesdb',
+    MONGO_URI = MONGO_URI_DEV,
 } = process.env;
 
 const app = express();
