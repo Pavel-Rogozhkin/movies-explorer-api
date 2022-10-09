@@ -36,6 +36,12 @@ const updateUser = async (req, res, next) => {
         }
         return res.send(user);
     } catch (err) {
+        if (err.name === 'CastError') {
+            return next(new AuthError('Требуется авторизация'));
+        }
+        if (err.code === 11000) {
+            return next(new ConfError('Пользователь с указанным email уже существует'));
+        }
         if (err.name === 'ValidationError') {
             return next(new ReqError('Переданы некорректные данные при обновлении профиля'));
         }
@@ -88,7 +94,7 @@ const login = async (req, res, next) => {
                 expiresIn: '7d',
                 httpOnly: true,
                 SameSite: 'None',
-                // secure: true,
+                secure: true,
             });
             return res.send({ data: user.toJSON() });
         }
