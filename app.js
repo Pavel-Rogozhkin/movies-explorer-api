@@ -10,12 +10,13 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorsHandler } = require('./middlewares/errors');
 const { routes } = require('./routes/routes');
+const rateLimiter = require('./middlewares/rateLimiter');
 
 require('dotenv').config();
 
 const {
     PORT = 3000,
-    MONGO_URI = 'mongodb://localhost:27017/filmsdb',
+    MONGO_URI = 'mongodb://localhost:27017/moviesdb',
 } = process.env;
 
 const app = express();
@@ -43,6 +44,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(requestLogger);
+
+app.use(rateLimiter);
 
 app.use(routes);
 
