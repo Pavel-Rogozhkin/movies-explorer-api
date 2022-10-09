@@ -27,15 +27,15 @@ const createMovie = async (req, res, next) => {
 
 const deleteMovieById = async (req, res, next) => {
     try {
-        const { movieId } = req.body;
-        const movie = await Movie.findById(movieId);
+        const { id } = req.params;
+        const movie = await Movie.findById(id);
         const movieUser = movie.owner._id.toString();
         const userId = req.user._id;
         if (!movie) {
             return next(new NotFoundError('Фильм с указанным ID не найден'));
         }
         if (movieUser === userId) {
-            await Movie.findByIdAndDelete(movieId);
+            await Movie.findByIdAndDelete(id);
         } else {
             return next(new ForbError('Попытка удалить фильм другого пользователя'));
         }

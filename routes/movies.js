@@ -28,7 +28,7 @@ moviesRoutes.post(
             thumbnail: Joi.string().custom(urlValid).required(),
             nameRU: Joi.string().required(),
             nameEN: Joi.string().required(),
-            movieId: Joi.string().length(24).alphanum().hex(),
+            movieId: Joi.string().length(24).hex().required(),
         }),
     }),
     createMovie,
@@ -37,8 +37,8 @@ moviesRoutes.post(
 moviesRoutes.delete(
     '/movies/_id',
     celebrate({
-        body: Joi.object().keys({
-            movieId: Joi.string().alphanum().hex(),
+        params: Joi.object().keys({
+            _id: Joi.string().length(24).hex().required(),
         }),
     }),
     deleteMovieById,
