@@ -28,7 +28,7 @@ moviesRoutes.post(
             thumbnail: Joi.string().custom(urlValid).required(),
             nameRU: Joi.string().required(),
             nameEN: Joi.string().required(),
-            movieId: Joi.string().length(24).hex().required(),
+            movieId: Joi.number().length(24).hex().required(),
         }),
     }),
     createMovie,
