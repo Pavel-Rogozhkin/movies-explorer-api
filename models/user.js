@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
 
     password: {
         type: String,
-        select: false, // comment for debug
+        // select: false, // comment for debug
         required: true,
     },
 

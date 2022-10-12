@@ -7,7 +7,7 @@ const { usersRoutes } = require('./users');
 const { moviesRoutes } = require('./movies');
 const { auth } = require('../middlewares/auth');
 const { NotFoundError } = require('../errors/not-found-err');
-const { login, createNewUser } = require('../controllers/users');
+const { login, createNewUser, signOut } = require('../controllers/users');
 
 routes.use(express.json());
 
@@ -34,9 +34,7 @@ routes.post(
     createNewUser,
 );
 
-routes.post('/signout', (req, res) => {
-    res.clearCookie('jwt').send({ message: 'Выход выполнен' });
-});
+routes.post('/signout', signOut);
 
 routes.use(auth);
 routes.use(usersRoutes);
