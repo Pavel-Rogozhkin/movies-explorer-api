@@ -8,7 +8,7 @@
 
 Адрес репозитория: https://github.com/Pavel-Rogozhkin/movies-explorer-api
 
-IP-адресс: 51.250.17.43
+IP-адресс: 51.250.105.144
 
 Frontend: https://pashalex.nomoredomains.icu
 
