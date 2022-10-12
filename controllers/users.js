@@ -94,7 +94,7 @@ const login = async (req, res, next) => {
                 expiresIn: '7d',
                 httpOnly: true,
                 SameSite: 'None',
-                // secure: true,
+                secure: true,
             });
             return res.send({ data: user.toJSON() });
         }
