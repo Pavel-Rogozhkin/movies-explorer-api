@@ -92,9 +92,9 @@ const login = async (req, res, next) => {
             );
             res.cookie('jwt', token, {
                 expiresIn: '7d',
-                // httpOnly: true,
+                httpOnly: true,
                 SameSite: 'None',
-                Secure,
+                Secure: true,
             });
             return res.send({ data: user.toJSON() });
         }
