@@ -93,8 +93,8 @@ const login = async (req, res, next) => {
             res.cookie('jwt', token, {
                 expiresIn: '7d',
                 // httpOnly: true,
-                // SameSite: None,
-                // secure: true,
+                SameSite: None,
+                Secure,
             });
             return res.send({ data: user.toJSON() });
         }
